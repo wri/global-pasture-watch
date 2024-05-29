@@ -1,0 +1,17 @@
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_cities_1.tif gaia/global/lcv/lcv_accessibility.to.cities_map.ox.var1_m_1km_s0..0cm_2015_v14052019.tif
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_cities_2.tif gaia/global/lcv/lcv_accessibility.to.cities_map.ox.var2_m_1km_s0..0cm_2015_v14052019.tif
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_cities_3.tif gaia/global/lcv/lcv_accessibility.to.cities_map.ox.var3_m_1km_s0..0cm_2015_v14052019.tif
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_cities_4.tif gaia/global/lcv/lcv_accessibility.to.cities_map.ox.var4_m_1km_s0..0cm_2015_v14052019.tif
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_cities_5.tif gaia/global/lcv/lcv_accessibility.to.cities_map.ox.var5_m_1km_s0..0cm_2015_v14052019.tif
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_cities_6.tif gaia/global/lcv/lcv_accessibility.to.cities_map.ox.var6_m_1km_s0..0cm_2015_v14052019.tif
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_cities_7.tif gaia/global/lcv/lcv_accessibility.to.cities_map.ox.var7_m_1km_s0..0cm_2015_v14052019.tif
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_cities_8.tif gaia/global/lcv/lcv_accessibility.to.cities_map.ox.var8_m_1km_s0..0cm_2015_v14052019.tif
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_cities_9.tif gaia/global/lcv/lcv_accessibility.to.cities_map.ox.var9_m_1km_s0..0cm_2015_v14052019.tif
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_cities_10.tif gaia/global/lcv/lcv_accessibility.to.cities_map.ox.var10_m_1km_s0..0cm_2015_v14052019.tif
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_cities_11.tif gaia/global/lcv/lcv_accessibility.to.cities_map.ox.var11_m_1km_s0..0cm_2015_v14052019.tif
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_cities_12.tif gaia/global/lcv/lcv_accessibility.to.cities_map.ox.var12_m_1km_s0..0cm_2015_v14052019.tif
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_ports_1.tif gaia/global/lcv/lcv_accessibility.to.ports_map.ox.var1_m_1km_s0..0cm_2015_v14052019.tif
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_ports_2.tif gaia/global/lcv/lcv_accessibility.to.ports_map.ox.var2_m_1km_s0..0cm_2015_v14052019.tif
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_ports_3.tif gaia/global/lcv/lcv_accessibility.to.ports_map.ox.var3_m_1km_s0..0cm_2015_v14052019.tif
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_ports_4.tif gaia/global/lcv/lcv_accessibility.to.ports_map.ox.var4_m_1km_s0..0cm_2015_v14052019.tif
+mc cp -q /mnt/lacus/raw/GlobalAccessibility/7638134/travel_time_to_ports_5.tif gaia/global/lcv/lcv_accessibility.to.ports_map.ox.var5_m_1km_s0..0cm_2015_v14052019.tif

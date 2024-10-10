@@ -1,4 +1,4 @@
-# Global Grassland Dynamics maps at 30m
+# Global grassland class and extent maps at 30m
 
 This dataset was based on 
 * Multiple Earth Observation (EO) data such as [GLAD Landsat ARD-2](https://glad.geog.umd.edu/ard/home), [MOD11A2](https://lpdaac.usgs.gov/products/mod11a2v006/), [MCD19A2](https://lpdaac.usgs.gov/products/mcd19a2v006/), digital terrain model derivatives and distance maps of accessibility, roads, and water;
@@ -8,4 +8,4 @@ This dataset was based on
 
 The publication describing the scientific methodology is under revision and the source code to implement all these steps is available in workflow.
 
-![Global Grassland Dynamics maps at 30m](../resources/image/GGD_30m_workflow.jpg)
+![Global Grassland Dynamics maps at 30m](../resources/image/ggc-30m-workflow.jpg)

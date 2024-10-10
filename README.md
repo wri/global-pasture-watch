@@ -1,10 +1,10 @@
 # Global Pasture Watch
 
 This repository provides the source code used to produce the follow Global Pasture Watch products (2000–2022+):
-* [GGD_30m: Global Grassland Dynamics maps at 30m](GGD_30m/README.md)
-* GLD_1km: Global Livestock Density maps at 1km
-* GSVH_30m: Global Short Vegetation Height maps at 30m
-* GGPP_30m: Global Gross Primary Productivity maps at 30m
+* [GGD-30m: Global grassland class and extent maps at 30m](GGD_30m/README.md)
+* GLD_1km: Global livestock density maps at 1km
+* GSVH_30m: Global short vegetation height maps at 30m
+* GGPP_30m: Global gross primary productivity maps at 30m
 
 ![Global Pasture Watch](resources/image/general.png)
 

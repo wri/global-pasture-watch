@@ -1,2 +1,0 @@
-mc cp -q /mnt/lacus/raw/OSM/Global/highways_high_density.tif global/lcv/lcv_road.distance_osm.highways.high.density_pxl_100m_0..0cm_2022_v19072022.tif
-mc cp -q /mnt/lacus/raw/OSM/Global/highways_low_density.tif global/lcv/lcv_road.distance_osm.highways.low.density_pxl_100m_0..0cm_2022_v19072022.tif

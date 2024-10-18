@@ -1,4 +1,0 @@
-mc cp /mnt/lacus/raw/FABDEM/FABDEM_v1-0_cog.tif gaia/global/dtm/dtm_elevation_copernicus.glo.fabdem.dtm_m_30m_s0..0cm_2010..2015_v1.0.tif
-mc cp /mnt/lacus/raw/FABDEM/FABDEM_v1-0_cog.tif gaia/global/dtm/dtm_slope.pct_copernicus.glo.fabdem.dtm_m_30m_s0..0cm_2010..2015_v1.0.tif
-mc cp /mnt/lacus/raw/FABDEM/FABDEM_v1-0_cog.tif gaia/global/dtm/dtm_aspect.deg_copernicus.glo.fabdem.dtm_m_30m_s0..0cm_2010..2015_v1.0.tif
-mc cp /mnt/lacus/raw/FABDEM/FABDEM_v1-0_cog.tif gaia/global/dtm/dtm_curvature_copernicus.glo.fabdem.dtm_m_30m_s0..0cm_2010..2015_v1.0.tif

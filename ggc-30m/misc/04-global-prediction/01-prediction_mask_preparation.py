@@ -5,6 +5,7 @@ import numpy as np
 import bottleneck as bn
 import numexpr as ne
 from pathlib import Path
+import pandas as pd
 
 executor = None
 
@@ -35,7 +36,6 @@ def ProcessGeneratorLazy(
     max_workers = multiprocessing.cpu_count()
     executor = concurrent.futures.ProcessPoolExecutor(max_workers=max_workers)
 
-  #with concurrent.futures.ProcessPoolExecutor(max_workers=max_workers) as executor:
   futures = { executor.submit(worker, **arg) for arg in args }
 
   done, not_done = concurrent.futures.wait(futures, return_when=concurrent.futures.FIRST_EXCEPTION)
@@ -86,7 +86,7 @@ def save_raster(base_raster, out_file, mask, i, minx = None, maxy = None, co = [
     gti = gdal.InvGeoTransform(gt)
 
     xoff, yoff = gdal.ApplyGeoTransform(gti, minx, maxy)
-    xoff, yoff = int(xoff), int(yoff)
+    xoff, yoff = round(xoff), round(yoff)
   
   gdal_array.BandWriteArray(out_band, np.zeros((4004,4004)))
   gdal_array.BandWriteArray(out_band, mask, xoff=xoff, yoff=yoff)
@@ -123,27 +123,26 @@ def landmask(raster_files, tile, minx, maxy, mask_vals, outdir):
   mask = (np.nansum(ne.evaluate(expression), axis=-1) >= 1).astype('int')
 
   base_raster = f'http://192.168.49.30:8333/prod-landsat-ard2/{tile}/seasconv/swir2_glad.SeasConv.ard2_m_30m_s_20220101_20220228_go_epsg.4326_v20230908.tif'
-  out_file = str(Path(outdir).joinpath(f'gpw_landmask_{tile}_ultimate.tif'))
+  out_file = str(Path(outdir).joinpath(f'{tile}.tif'))
   co = ['TILED=YES', 'BIGTIFF=YES', 'COMPRESS=DEFLATE', 'BLOCKXSIZE=1024', 'BLOCKYSIZE=1024']
   save_raster(base_raster, out_file, mask, 0, minx, maxy, co)
 
   return tile, np.nanmax(mask)
 
-outdir = 'global_landmask'
-# Pasture-class
-#mask_vals = [[0,5],[32,48],[280,280],[241,241],[100,101],[200,207],[254,255]]
+outdir = 'predmask'
+mask_vals = [[254,255],[197,239]]
 
-# Pasture-class
-mask_vals = [[100,101],[254,255]]
 raster_files = [
-    './static/lc_glad.glcluc_c_30m_s_20000101_20001231_go_epsg.4326_v20230901.vrt',
-    './static/lc_glad.glcluc_c_30m_s_20050101_20051231_go_epsg.4326_v20230901.vrt',
-    './static/lc_glad.glcluc_c_30m_s_20100101_20101231_go_epsg.4326_v20230901.vrt',
-    './static/lc_glad.glcluc_c_30m_s_20150101_20151231_go_epsg.4326_v20230901.vrt',
-    './static/lc_glad.glcluc_c_30m_s_20200101_20201231_go_epsg.4326_v20230901.vrt'
+    '/mnt/inca/GPW/vrts/lc_glad.glcluc_c_30m_s_20000101_20001231_go_epsg.4326_v20230901.vrt',
+    '/mnt/inca/GPW/vrts/lc_glad.glcluc_c_30m_s_20050101_20051231_go_epsg.4326_v20230901.vrt',
+    '/mnt/inca/GPW/vrts/lc_glad.glcluc_c_30m_s_20100101_20101231_go_epsg.4326_v20230901.vrt',
+    '/mnt/inca/GPW/vrts/lc_glad.glcluc_c_30m_s_20150101_20151231_go_epsg.4326_v20230901.vrt',
+    '/mnt/inca/GPW/vrts/lc_glad.glcluc_c_30m_s_20200101_20201231_go_epsg.4326_v20230901.vrt'
 ]
+missing_tiles = pd.read_csv('/mnt/slurm/jobs/wri_pasture_class/gpw_pasture.class_ids.csv')['TILE']
 
-tiles = gpd.read_file('/mnt/tupi/WRI/prod_new_samples/ard2_final_status.gpkg')
+tiles = gpd.read_file('ard2_final_status.gpkg')
+tiles = tiles[tiles['TILE'].isin(missing_tiles)]
 
 args = []
 for _,row in tiles.iterrows():
@@ -157,8 +156,6 @@ for _,row in tiles.iterrows():
         'outdir': outdir
     })
 
-#tile = '029E_51N'
-#minx, miny, maxx, maxy = tiles[tiles['TILE'] == tile].iloc[0].geometry.bounds
 Path(outdir).mkdir(parents=True, exist_ok=True)
 for tile, max_val in ProcessGeneratorLazy(landmask, args, max_workers=96):
   print(f"TILE {tile} max {max_val}")

@@ -6,6 +6,6 @@ This dataset was based on
 * Two independent spatiotemporal Random Forest models were used to predict each grassland class (cultivated and natural/semi-natural) over multiple years on a global scale;
 * The predictions were produced for all years from 2000 to 2022, resulting in a time series of global probability maps for each class at 30~m spatial resolution. 
 
-The publication describing the scientific methodology is under revision and the source code to implement all these steps is available in workflow.
+The publication describing the scientific methodology is under revision and the source code to implement all these steps is available in workflow. A practical explanation of the implemented modeling is provided as [computation notebook (see modeling.ipynb)](modeling.ipynb).
 
 ![Global Grassland Dynamics maps at 30m](../resources/image/ggc-30m-workflow.jpg)

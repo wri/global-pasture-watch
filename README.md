@@ -6,8 +6,8 @@
 This repository provides the source code used to produce the follow Global Pasture Watch products (2000–2022+):
 * [GGC-30m: Global grassland class and extent maps at 30m](ggc-30m/README.md)
 * [GLD-1km: Global livestock distributions maps at 1km](gld-1km/README.md)
-* GSVH-30m: Global short vegetation height maps at 30m
-* GGPP-30m: Global gross primary productivity maps at 30m
+* [GSVH-30m: Global short vegetation height maps at 30m](gsvh-1km/README.md)
+* [GGPP-30m: Global gross primary productivity maps at 30m](ggpp-1km/README.md)
 
 ![Global Pasture Watch](resources/image/general.png)
 
@@ -29,12 +29,18 @@ The output maps, reference samples, ML models and additional datasets are public
 	* [Annual horse density maps at 1-km for 2000–2022 including prediction interval](https://doi.org/10.5281/zenodo.14933647)
 	* [Livestock reference samples based on multi-source sub-national census data (2000—2022)](https://doi.org/10.5281/zenodo.14926056)
 	* [Annual maps of potential land for livestock production at 1-km for 2000–2022](https://doi.org/10.5281/zenodo.14933679)
+* **Global short vegetation maps at 30-m**
+	* [Annual short vegetation height maps at 30-m spatial resolution for 2000–2022 including prediction interval and trend analysis](https://doi.org/10.5281/zenodo.15198654)
 
 ## STAC and Google Earth Engine
 
 The output maps are also publicly available in Google Earth Engine and STAC:
 * [Land & Carbon Lab Global Pasture Watch](https://developers.google.com/earth-engine/datasets/publisher/global-pasture-watch)
 * [OpenLandMap STAC](https://stac.openlandmap.org)
+* GEE Apps:
+  * [Height Comparison Toolkit (GPW-HCT)](https://gpw-lapig.projects.earthengine.app/view/hct)
+  * [Global Grassland Map Customization](https://global-pasture-watch.projects.earthengine.app/view/ggc-30m)
+  * [Global Grassland Comparison tool](https://ee-vieiramesquita.projects.earthengine.app/view/ggc-30m-comparison)
 
 ## Related softwares / libraries
 

@@ -52,25 +52,33 @@ session = AuthorizedSession(
     ee.data.get_persistent_credentials().with_quota_project(ee_project)
 )
 
-cultiv_grassland_id = 'ggc-30m/v1/cultiv-grassland_p'
+cultiv_grassland_id = 'ggc-30m/v2/cultiv-grassland_p'
 cultiv_grassland_band = 'probability'
-cultiv_grassland_url = 'gs://wri-globalpasturewatch/ggc-30m/gpw_cultiv.grassland_rf.savgol_p_30m_{year}0101_{year}1231_go_epsg.4326_v1.tif'
+cultiv_grassland_url = 'gs://wri-globalpasturewatch/ggc-30m/gpw_cultiv.grassland_rf.med.filt_p_30m_{year}0101_{year}1231_go_epsg.4326_v2.tif'
 
-natsem_grassland_id = 'ggc-30m/v1/nat-semi-grassland_p'
+natsem_grassland_id = 'ggc-30m/v2/nat-semi-grassland_p'
 natsem_grassland_band = 'probability'
-natsem_grassland_url = 'gs://wri-globalpasturewatch/ggc-30m/gpw_nat.semi.grassland_rf.savgol_p_30m_{year}0101_{year}1231_go_epsg.4326_v1.tif'
+natsem_grassland_url = 'gs://wri-globalpasturewatch/ggc-30m/gpw_nat.semi.grassland_rf.med.filt_p_30m_{year}0101_{year}1231_go_epsg.4326_v2.tif'
 
-domi_grassland_id = 'ggc-30m/v1/grassland_c'
+open_shrubland_id = 'ggc-30m/v2/open-shrubland_p'
+open_shrubland_band = 'probability'
+open_shrubland_url = 'gs://wri-globalpasturewatch/ggc-30m/gpw_open.shrubland_rf.med.filt_p_30m_{year}0101_{year}1231_go_epsg.4326_v2.tif'
+
+domi_grassland_id = 'ggc-30m/v2/grassland_c'
 domi_grassland_band = 'dominant_class'
-domi_grassland_url = 'gs://wri-globalpasturewatch/ggc-30m/gpw_grassland_rf.savgol.bthr_c_30m_{year}0101_{year}1231_go_epsg.4326_v1.tif'
+domi_grassland_url = 'gs://wri-globalpasturewatch/ggc-30m/gpw_grassland_rf.med.filt.bthr_c_30m_{year}0101_{year}1231_go_epsg.4326_v2.tif'
 
-start_time, end_time = '2000-01-01T00:00:00.000000000Z', '2022-12-31T23:59:59.000000000Z'
-collection_properties = { 'version': 1.0 }
+start_time, end_time = '2000-01-01T00:00:00.000000000Z', '2024-12-31T23:59:59.000000000Z'
+collection_properties = { 'version': 2.0 }
 
+
+# The folder ggc-30m/v2 must exists
 pprint(create_image_collection(ee_project, cultiv_grassland_id, start_time, end_time, collection_properties))
-pprint(create_image_collection(ee_project, natsem_grassland_id, start_time, end_time, collection_properties)
+pprint(create_image_collection(ee_project, natsem_grassland_id, start_time, end_time, collection_properties))
+pprint(create_image_collection(ee_project, open_shrubland_id, start_time, end_time, collection_properties))
 pprint(create_image_collection(ee_project, domi_grassland_id, start_time, end_time, collection_properties))
 
-add_image_in_collection(ee_project, cultiv_grassland_id, cultiv_grassland_band, cultiv_grassland_url, 2000, 2022, {})
-add_image_in_collection(ee_project, natsem_grassland_id, natsem_grassland_band, natsem_grassland_url, 2000, 2022, {})
-add_image_in_collection(ee_project, domi_grassland_id, domi_grassland_band, domi_grassland_url, 2000, 2022, {})
+add_image_in_collection(ee_project, cultiv_grassland_id, cultiv_grassland_band, cultiv_grassland_url, 2000, 2024, {})
+add_image_in_collection(ee_project, natsem_grassland_id, natsem_grassland_band, natsem_grassland_url, 2000, 2024, {})
+add_image_in_collection(ee_project, open_shrubland_id, open_shrubland_band, open_shrubland_url, 2000, 2024, {})
+add_image_in_collection(ee_project, domi_grassland_id, domi_grassland_band, domi_grassland_url, 2000, 2024, {})

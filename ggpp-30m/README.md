@@ -409,3 +409,53 @@ plt.show()
 Here is a GIF illustrating the change in GPP between 2000 and 2024 in this region, displayed with Google Satellite imagery in three consecutive frames.
 
 ![gpp_deforestration](figs/gpp_deforestration.gif)
+
+The red star in the maps marks our Point of Interest (POI). By extracting its pixel values across all years, we can plot a time series of uGPP. This reveals not only gradual trends but also a distinct breakpoint where GPP drops sharply after deforestation. Before the event, values remain stable, reflecting intact forest productivity; afterwards, they decline significantly, highlighting the loss of canopy photosynthesis.
+
+```python
+# Point of interest (central location in the figure above)
+lon, lat = 114.980, -3.26
+
+def extract_date_from_filename(href: str):
+    m = re.search(r"_(\d{8})_(\d{8})_", href)
+    if m:
+        start, end = m.groups()
+        return pd.to_datetime(start, format="%Y%m%d"), pd.to_datetime(end, format="%Y%m%d")
+    return None, None
+
+
+def sample_pixel(href: str, lon: float, lat: float):
+    with rasterio.open(href) as ds:
+        row, col = ds.index(lon, lat)
+        if (0 <= row < ds.height) and (0 <= col < ds.width):
+            window = Window(col, row, 1, 1)
+            val = ds.read(1, window=window)[0, 0]
+            if val == ds.nodata:
+                return np.nan
+            return val
+        else:
+            return np.nan
+
+records = []
+for href in gpp_layers:
+    start, end = extract_date_from_filename(href)
+    val = sample_pixel(href, lon, lat)
+    records.append({"start_date": start, "end_date": end, "value": val, "href": href})
+
+df_ts = pd.DataFrame(records)
+```
+
+```python
+plt.figure(figsize=(12,5))
+plt.plot(df_ts["start_date"], df_ts["value"], marker="o", linestyle="-", color="forestgreen", linewidth=2)
+plt.scatter(df_ts["start_date"], df_ts["value"], color="darkgreen", s=50, zorder=3)
+
+plt.title("uGPP Time Series at (114.980°E, 3.26°S)", fontsize=14)
+plt.xlabel("Date", fontsize=12)
+plt.ylabel("uGPP [gC/m2/year]", fontsize=12)
+plt.grid(True, linestyle="--", alpha=0.5)
+plt.tight_layout()
+plt.show()
+```
+
+![ugpp_timeseries_poi](figs/ugpp_timeseries_poi.png)

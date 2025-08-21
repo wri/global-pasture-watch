@@ -410,6 +410,11 @@ for ax in [ax1, ax2]:
     ax.xaxis.set_major_formatter(LongitudeFormatter())
     ax.yaxis.set_major_formatter(LatitudeFormatter())
 
+# Add marker for POI on both maps
+lon, lat = 114.980, -3.26
+for ax in [ax1, ax2]:
+    ax.plot(lon, lat, marker="*", color="red", markersize=14,
+            transform=ccrs.PlateCarree(), label="POI")
 
 fig.colorbar(im2, cax=cax)
 pos = cax.get_position()

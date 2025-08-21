@@ -150,7 +150,10 @@ gpp_layer[0]
 ```
 
 ```python
-fig, axes = plt.subplots(3, 2, figsize=(18, 12), subplot_kw={'projection': ccrs.Robinson()})
+fig, axes = plt.subplots(
+    3, 2, figsize=(18, 12),
+    subplot_kw={'projection': ccrs.Robinson()}
+)
 plt.subplots_adjust(wspace=0.05, hspace=0.15)
 
 # Colormap
@@ -159,12 +162,12 @@ cmap = cmc.batlow_r
 cmap.set_bad(color="white")
 
 year = 2024
+im = None  # placeholder to capture the last image
 for ax, date_tpl in zip(axes.flat, dates):
     date = date_tpl.replace("YYYY", str(year))
-    
     subtitle = f"{date[:8]} to {date[9:]}"
     ax.set_title(subtitle, fontsize=10)
-    
+
     url = f'https://s3.opengeohub.org/gpw/arco/gpw_ugpp.daily_lue.model_m_30m_s_{date}_go_epsg.4326_v1.tif'
     with rasterio.open(url) as dataset:
         nodata = dataset.nodata
@@ -176,7 +179,6 @@ for ax, date_tpl in zip(axes.flat, dates):
             1,
             out_shape=(1, int(dataset.height // oview_level), int(dataset.width // oview_level))
         )
-        
 
     overview_data = np.ma.masked_where(overview_data == nodata, overview_data)
     im = ax.imshow(
@@ -189,9 +191,13 @@ for ax, date_tpl in zip(axes.flat, dates):
     )
 
     ax.coastlines()
-    ax.add_feature(cfeature.BORDERS)
-    ocean = cfeature.NaturalEarthFeature('physical', 'ocean', scale='110m', edgecolor='none', facecolor='none')# #91A3B0
-    ax.add_feature(ocean, zorder=9)
+    ax.add_feature(cfeature.BORDERS, linewidth=0.5)
+    ax.add_feature(cfeature.OCEAN, facecolor="lightgray", zorder=0) 
+
+cbar_ax = fig.add_axes([0.92, 0.25, 0.015, 0.5])
+cbar = fig.colorbar(im, cax=cbar_ax)
+cbar.set_label("uGPP [gC m$^{-2}$ day$^{-1}$]", fontsize=12)
+cbar.ax.tick_params(labelsize=10)
 ```
 
 ![ugpp_bimonthly_2024](figs/ugpp_bimonthly_2024.png)
@@ -221,7 +227,10 @@ gpp_layers[0]
 ```
 
 ```python
-fig, axes = plt.subplots(3, 2, figsize=(18, 12), subplot_kw={'projection': ccrs.Robinson()})
+fig, axes = plt.subplots(
+    3, 2, figsize=(18, 12),
+    subplot_kw={'projection': ccrs.Robinson()}
+)
 plt.subplots_adjust(wspace=0.05, hspace=0.15)
 
 # Colormap
@@ -260,9 +269,13 @@ for ax, date_tpl in zip(axes.flat, dates):
     )
 
     ax.coastlines()
-    ax.add_feature(cfeature.BORDERS)
-    ocean = cfeature.NaturalEarthFeature('physical', 'ocean', scale='110m', edgecolor='none', facecolor='none')# #91A3B0
-    ax.add_feature(ocean, zorder=9)
+    ax.add_feature(cfeature.BORDERS, linewidth=0.5)
+    ax.add_feature(cfeature.OCEAN, facecolor="lightgray", zorder=0) 
+
+cbar_ax = fig.add_axes([0.92, 0.25, 0.015, 0.5]) 
+cbar = fig.colorbar(im, cax=cbar_ax)
+cbar.set_label("GPP [gC m$^{-2}$ day$^{-1}$]", fontsize=12)
+cbar.ax.tick_params(labelsize=10)
 ```
 
 ![grasslandGPP_bimonthly_2000](figs/grasslandGPP_bimonthly_2000.png)

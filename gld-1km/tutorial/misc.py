@@ -20,10 +20,6 @@ from matplotlib import colors
 def gdalwarp_cmds(df, indir, outdir, end_year, te, tr, t_srs):
     cmds = []
 
-    indir = 'raster_layers'
-    outdir = 'datacube'
-    end_year = 2022
-
     for r_method, rows in df.groupby('r_method'):
         for _, row in rows.iterrows():
 

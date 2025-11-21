@@ -1,7 +1,7 @@
 # Global Pasture Watch
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13890401.svg)](https://doi.org/10.5281/zenodo.13890401)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17491242.svg)](https://doi.org/10.5281/zenodo.17491242)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14933636.svg)](https://doi.org/10.5281/zenodo.14933636)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15198654.svg)](https://doi.org/10.5281/zenodo.15198654)
 
 This repository provides the source code used to produce the follow Global Pasture Watch products (2000–2022+):
@@ -16,7 +16,7 @@ This repository provides the source code used to produce the follow Global Pastu
 
 The output maps, reference samples, ML models and additional datasets are publicly available in Zenodo:
 
-* **Global grassland class and extent maps at 30-m**
+* **Global grassland class and extent maps at 30m**
 	* [Annual grassland class and extent maps at 30-m spatial resolution (2000—2022)](https://doi.org/10.5281/zenodo.13890400)
   * [Grassland reference samples based on visual interpretation of VHR imagery (2000–2022)](https://zenodo.org/records/11281157)
   * [Global machine learning model for prediction of cultivated and natural/semi-natural grassland](https://zenodo.org/records/11280849)
@@ -34,8 +34,9 @@ The output maps, reference samples, ML models and additional datasets are public
 	* [Annual maps of potential land for livestock production at 1-km for 2000–2022](https://doi.org/10.5281/zenodo.14933679)
 * **Global short vegetation maps at 30-m**
 	* [Annual short vegetation height maps at 30-m spatial resolution for 2000–2022 including prediction interval and trend analysis](https://doi.org/10.5281/zenodo.15198654)
-* **Global gross primary productivity maps at 30-m**
-	* [Global EC Flux Tower Bimonthly GPP Time Series from FluxNet2015, ICOS, AmeriFlux, OzFlux, and ChinaFlux for Product Validation](https://doi.org/10.5281/zenodo.15349578)
+* **Global global gross primary productivity maps maps at 30-m**
+  * [Global Uncalibrated EO-based GPP and Grassland GPP Maps at 30m](https://doi.org/10.5281/zenodo.15675358)
+  * [Global EC Flux Tower Bimonthly GPP Time Series from FluxNet2015, ICOS, AmeriFlux, OzFlux, and ChinaFlux for Product Validation](https://doi.org/10.5281/zenodo.15349578)
 
 ## STAC, Google Earth Engine & WebGIS apps
 
@@ -44,16 +45,17 @@ The output maps are also publicly available in Google Earth Engine and STAC:
 * [Land & Carbon Lab Global Pasture Watch](https://developers.google.com/earth-engine/datasets/publisher/global-pasture-watch)
 * [WRI Data Explorer](https://datasets.wri.org/datasets/grassland-dynamics?map=eyJ2aWV3U3RhdGUiOnsibGF0aXR1ZGUiOjIyLjEwODUzNDU2MjQyNjE1OCwibG9uZ2l0dWRlIjowLjA0NTI2ODk2NzQ3MjI4MTkzLCJ6b29tIjoxLjQ3NDg4NTc4NTQwMTEwNDIsImJlYXJpbmciOjAsInBpdGNoIjowLCJwYWRkaW5nIjp7InRvcCI6MCwiYm90dG9tIjowLCJsZWZ0IjowLCJyaWdodCI6MH19LCJiYXNlbWFwIjoibGlnaHQiLCJib3VuZGFyaWVzIjpmYWxzZSwibGFiZWxzIjoiZGFyayIsImFjdGl2ZUxheWVyR3JvdXBzIjpbeyJkYXRhc2V0SWQiOiJmMWJiM2FkYi04MDI5LTQ2ODEtOGFlZC04NDI1NTk3YmMwZGEiLCJsYXllcnMiOlsiODY1NmYzOGQtZjgyNi00NjYwLWI4M2YtZjVjM2VlZGJkNDMwIl19LHsiZGF0YXNldElkIjoiYWI1MjZkZGMtMzk1NC00MzhhLTlhMDQtMmZiYjA1N2ZhNTNjIiwibGF5ZXJzIjpbIjg2NTZmMzhkLWY4MjYtNDY2MC1iODNmLWY1YzNlZWRiZDQzMCJdfV0sImJvdW5kcyI6eyJiYm94IjpudWxsLCJvcHRpb25zIjp7fX0sImxheWVyc1BhcnNlZCI6W1siODY1NmYzOGQtZjgyNi00NjYwLWI4M2YtZjVjM2VlZGJkNDMwIix7InZpc2liaWxpdHkiOnRydWUsImFjdGl2ZSI6dHJ1ZSwib3BhY2l0eSI6MSwiekluZGV4IjoxMX1dXX0%3D&ap3c=IGgHf5TfpNRjpT8CAGgHf5TOKzY6xEFLk_Jkbix1QAyjKdOjsg)
 * [OpenLandMap STAC](https://stac.openlandmap.org)
-* GEE Apps:
+* GEE Apps ([GPW gallery](https://global-pasture-watch.projects.earthengine.app/)):
   * [Height Comparison Toolkit (GPW-HCT)](https://gpw-lapig.projects.earthengine.app/view/hct)
   * [Global Grassland Map Customization](https://global-pasture-watch.projects.earthengine.app/view/ggc-30m)
   * [Global Grassland Comparison tool](https://ee-vieiramesquita.projects.earthengine.app/view/ggc-30m-comparison)
+  * [Global Grassland Gross Primary Productivity](https://global-pasture-watch.projects.earthengine.app/view/ggpp-30m)
 * [OpenLandMap](https://openlandmap.org)
 * [EcoDataCube](https://ecodatacube.eu)
 
-## Related software / libraries
+## Related softwares / libraries
 
-The software and libraries produced/maintained in the context of the initiative are publicly available:
+The softwares and libraries produced / maintained in the context of the initiative are publicly available:
 
 * [QGIS Fast Grid Inspection](https://plugins.qgis.org/plugins/qgis-fgi-plugin/#plugin-about)
 * [Scikit-Map](https://github.com/openlandmap/scikit-map)

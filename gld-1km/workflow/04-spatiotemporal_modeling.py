@@ -15,7 +15,7 @@ from sklearn.model_selection import HalvingRandomSearchCV
 from sklearn.preprocessing import PowerTransformer
 
 from pathlib import Path
-from eumap.misc import ttprint
+from skmap.misc import ttprint
 import joblib
 
 def run_if_not_exists(fn, func):
@@ -23,7 +23,7 @@ def run_if_not_exists(fn, func):
     ttprint(f'Using variables from {fn}')
     result = joblib.load(fn)
   else:
-    result = func()
+    result = func() 
     joblib.dump(result, fn, compress='lz4')
   globals().update(result)
 
@@ -135,27 +135,40 @@ def d2p1(y_true, y_pred, sample_weight):
     return "d2p1", d2_tweedie_score(y_true, y_pred, sample_weight=sample_weight, power=1), True
 
 wd = '/mnt/tupi/WRI/livestock_global_modeling/livestock_census_ard'
-sample_fn = f'{wd}/gpw_livestock.animals_gpw.fao.glw3_zonal.samples_20000101_20211231_go_epsg.4326_v1.pq'
+sample_fn = f'{wd}/gpw_livestock.animals_gpw.fao.faostat.malek.2024_zonal.samples_20000101_20231231_go_epsg.4326_v1.pq'
 #sample_fn = f'{wd}/subsample.pq'
-model_dir = f'{wd}/zonal_models_zeros_wei_prod_v20250216/'
+model_dir = f'{wd}/zonal_models_zeros_nowei_prod_v20250924_cur/'
 
 Path(model_dir).mkdir(parents=True, exist_ok=True)
 
 ttprint(f"Loading {sample_fn}")
 data = pd.read_parquet(f'{sample_fn}')
 
-
 animal_types = ['cattle', 'sheep', 'goat', 'horse', 'buffalo']
 target_cols = ['density', 'density_boxcox']
-#desity_col = 'density'
+#    'goat': 1124, #311,
+#    'horse': 94, #52,
+#    'buffalo': 797 #338,
+#}
 
 max_density = {
-    'cattle': 1428,
-    'sheep': 534,
-    'goat': 311,
-    'horse': 52,
-    'buffalo': 338,
+    'cattle': 1511, #1428,
+    'sheep': 713, #534,
+    'goat': 832, #311,
+    'horse': 83, #52,
+    'buffalo': 490 #338,
 }
+
+adhoc_mask = np.logical_not(
+    np.logical_or.reduce([
+        np.logical_and.reduce([
+            data['gazName'].str.contains('Russian Federation'),
+            data['area_km2'] <= 10
+        ]),
+        data['gazName'] == 'United States of America.Alaska.North Slope'
+    ])
+)
+data = data[adhoc_mask]
 
 spatial_cv_column = 'gazName'
 weight_column = 'weight'
@@ -163,7 +176,9 @@ cv_njobs = 5
 cv_folds = cv_njobs
 seed = 1989
 
-#data[weight_column] = 1
+# Weigth
+data[weight_column] = 1
+feat_to_sel = 50
 
 rfe_criterion = {
     'density': 'poisson',
@@ -270,7 +285,19 @@ for (animal_type, target_column, target_suff) in ml_args:
   ].copy()
   
   cov_idx = data_ani.columns.get_loc(list(data_ani.columns[data_ani.columns.str.contains('ind_')])[-1]) + 1
-  covs = data_ani.columns[cov_idx:]
+  #covs = data_ani.columns[cov_idx:]
+  #covs = data_ani.columns[cov_idx:].drop([
+  #  'wilderness_li2022.human.footprint_p_1km_s_year0101_year1231_go_epsg.4326_v16022022'
+  #])
+  # Produce artifacts on high latitudes
+  covs = data_ani.columns[cov_idx:].drop([
+    'lcv_accessibility.to.ports_map.ox.var1_m_1km_s0..0cm_2015_v14052019',
+    'lcv_accessibility.to.ports_map.ox.var2_m_1km_s0..0cm_2015_v14052019',
+    'lcv_accessibility.to.ports_map.ox.var3_m_1km_s0..0cm_2015_v14052019',
+    'lcv_accessibility.to.ports_map.ox.var4_m_1km_s0..0cm_2015_v14052019',
+    'lcv_accessibility.to.ports_map.ox.var5_m_1km_s0..0cm_2015_v14052019'
+  ])
+  #print(list(covs))
 
   target_pt = None
   if target_suff == 'density_boxcox':
@@ -295,7 +322,7 @@ for (animal_type, target_column, target_suff) in ml_args:
         covs = covs, 
         target_column = target_column, 
         weight_column = weight_column, 
-        n_features_to_select = 100,
+        n_features_to_select = feat_to_sel,
         estimator = RandomForestRegressor(n_jobs=50, criterion=rfe_criterion[target_suff], random_state=seed),
         seed = seed
       )

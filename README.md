@@ -1,14 +1,14 @@
 # Global Pasture Watch
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.13890401.svg)](https://doi.org/10.5281/zenodo.13890401)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14933636.svg)](https://doi.org/10.5281/zenodo.14933636)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17491242.svg)](https://doi.org/10.5281/zenodo.17491242)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15198654.svg)](https://doi.org/10.5281/zenodo.15198654)
 
 This repository provides the source code used to produce the follow Global Pasture Watch products (2000–2022+):
-* [GGC-30m: Global grassland class and extent maps at 30m](ggc-30m/README.md) (Publication: https://doi.org/10.1038/s41597-024-04139-6)
-* [GLD-1km: Global livestock distributions maps at 1km](gld-1km/README.md) (Preprint: https://doi.org/10.21203/rs.3.rs-6201916/v1)
-* [GSVH-30m: Global short vegetation height maps at 30m](gsvh-30m/README.md) (Preprint: https://doi.org/10.21203/rs.3.rs-6521333/v1)
-* [GGPP-30m: Global gross primary productivity maps at 30m](ggpp-30m/README.md) (Preprint: https://doi.org/10.21203/rs.3.rs-6521333/v1)
+* [GGC-30m: Global grassland class and extent maps at 30-m](ggc-30m/README.md) (Publication: https://doi.org/10.1038/s41597-024-04139-6)
+* [GLD-1km: Global livestock distributions maps at 1-km](gld-1km/README.md) (Preprint: https://doi.org/10.21203/rs.3.rs-6201916/v1)
+* [GSVH-30m: Global short vegetation height maps at 30-m](gsvh-30m/README.md) (Publication: https://doi.org/10.1038/s41597-025-05739-6)
+* [GGPP-30m: Global gross primary productivity maps at 30-m](ggpp-30m/README.md) (publication: https://doi.org/10.7717/peerj.19774)
 
 ![Global Pasture Watch](resources/image/general.png)
 
@@ -16,22 +16,26 @@ This repository provides the source code used to produce the follow Global Pastu
 
 The output maps, reference samples, ML models and additional datasets are publicly available in Zenodo:
 
-* **Global grassland class and extent maps at 30m**
+* **Global grassland class and extent maps at 30-m**
 	* [Annual grassland class and extent maps at 30-m spatial resolution (2000—2022)](https://doi.org/10.5281/zenodo.13890400)
   * [Grassland reference samples based on visual interpretation of VHR imagery (2000–2022)](https://zenodo.org/records/11281157)
   * [Global machine learning model for prediction of cultivated and natural/semi-natural grassland](https://zenodo.org/records/11280849)
   * [Grassland sampling design derived by Feature Space Coverage Sampling (FSCV) at 1-km spatial resolution](https://zenodo.org/records/11275539)
   * [Integrated Approach to Global Land Use and Land Cover Reference Data Harmonization](https://zenodo.org/records/11285561)
-* **Global livestock distributions maps at 1km**
-	* [Annual livestock headcount maps for cattle, goats, sheep and horses at 1-km 2000–2022 (FAOSTAT-adjusted)](https://doi.org/10.5281/zenodo.14933636)
-	* [Annual cattle density maps at 1-km for 2000–2022 including prediction interval](https://doi.org/10.5281/zenodo.14933660)
-	* [Annual goat density maps at 1-km for 2000–2022 including prediction interval](https://doi.org/10.5281/zenodo.14933653)
-	* [Annual sheep density maps at 1-km for 2000–2022 including prediction interval](https://doi.org/10.5281/zenodo.14933641)
-	* [Annual horse density maps at 1-km for 2000–2022 including prediction interval](https://doi.org/10.5281/zenodo.14933647)
-	* [Livestock reference samples based on multi-source sub-national census data (2000—2022)](https://doi.org/10.5281/zenodo.14926056)
+* **Global livestock distributions maps at 1-km**
+	* [Annual livestock headcount maps for cattle, goats, sheep and horses at 1-km 2000–2022 (FAOSTAT-adjusted)](https://doi.org/10.5281/zenodo.17491242)
+	* [Annual cattle density maps at 1-km for 2000–2022 including 95% prediction interval](https://doi.org/10.5281/zenodo.17486471)
+	* [Annual goat density maps at 1-km for 2000–2022 including 95% prediction interval](https://doi.org/10.5281/zenodo.17490112)
+	* [Annual sheep density maps at 1-km for 2000–2022 including 95% prediction interval](https://doi.org/10.5281/zenodo.17490692)
+	* [Annual horse density maps at 1-km for 2000–2022 including 95% prediction interval](https://doi.org/10.5281/zenodo.17490457)
+	* [Annual buffalo density maps at 1-km for 2000–2022 including 95% prediction interval](https://doi.org/10.5281/zenodo.17485929)
+	* [Livestock reference samples based on multi-source sub-national census data (2000—2022)](https://doi.org/10.5281/zenodo.17665040)
+	* [Global machine learning models for livestock density predictions](https://doi.org/10.5281/zenodo.17665388)
 	* [Annual maps of potential land for livestock production at 1-km for 2000–2022](https://doi.org/10.5281/zenodo.14933679)
 * **Global short vegetation maps at 30-m**
 	* [Annual short vegetation height maps at 30-m spatial resolution for 2000–2022 including prediction interval and trend analysis](https://doi.org/10.5281/zenodo.15198654)
+* **Global gross primary productivity maps at 30-m**
+	* [Global EC Flux Tower Bimonthly GPP Time Series from FluxNet2015, ICOS, AmeriFlux, OzFlux, and ChinaFlux for Product Validation](https://doi.org/10.5281/zenodo.15349578)
 
 ## STAC, Google Earth Engine & WebGIS apps
 
@@ -47,9 +51,9 @@ The output maps are also publicly available in Google Earth Engine and STAC:
 * [OpenLandMap](https://openlandmap.org)
 * [EcoDataCube](https://ecodatacube.eu)
 
-## Related softwares / libraries
+## Related software / libraries
 
-The softwares and libraries produced / maintained in the context of the initiative are publicly available:
+The software and libraries produced/maintained in the context of the initiative are publicly available:
 
 * [QGIS Fast Grid Inspection](https://plugins.qgis.org/plugins/qgis-fgi-plugin/#plugin-about)
 * [Scikit-Map](https://github.com/openlandmap/scikit-map)

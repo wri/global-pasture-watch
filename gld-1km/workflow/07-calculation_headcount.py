@@ -23,13 +23,15 @@ import traceback
 
 def livestock_maps(animals, suff='total_rf_m', y1=2000, y2=2022):
   return [
-    f'http://192.168.49.30:8333/gpw/livestock_final/gpw_{animal}.{suff}_1km_s_{y}0101_{y}1231_go_epsg.4326_v1.tif'
+    f'http://192.168.49.30:8333/gpw/livestock_v2/gpw_{animal}.{suff}_1km_s_{y}0101_{y}1231_go_epsg.4326_v1.tif'
     for animal in animals
     for y in range(y1,y2+1)
   ]
 
 def _window(polygon_samp, raster_layer):
   minx, miny, maxx, maxy = polygon_samp.total_bounds
+  print(polygon_samp)
+  print(minx, miny, maxx, maxy)
   return  from_bounds(minx, miny, maxx, maxy, rasterio.open(raster_layer).transform).round_lengths().round_offsets()
 
 def _raster_template(base_raster, tmp_raster, x_off_s, y_off_s, x_size, y_size, dtype):
@@ -50,7 +52,7 @@ def _raster_template(base_raster, tmp_raster, x_off_s, y_off_s, x_size, y_size, 
   new_dataset.close()
 
 
-animals = ['cattle', 'sheep', 'goat', 'horse']
+animals = ['cattle', 'sheep', 'goat', 'horse', 'buffalo']
 y1, y2 = 2000, 2022
 
 nodata_val = -32000
@@ -58,11 +60,11 @@ n_threads = 96
 
 crs_igg = '+proj=igh +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs +type=crs'
 
-s3_prefix = 'tmp-gpw/livestock_prod_zeros_nowei_mp_v20250217'
+s3_prefix = 'tmp-gpw/livestock_prod_zeros_nowei_v20250924_mp_ultimate/'
 
 subnet = '192.168.49'
 hosts = [ f'{subnet}.{i}:8333' for i in range(30,43) ]
-out_pq_file = './faostat_correction_factor.pq'
+out_pq_file = './faostat_correction_factor_v2.pq'
 
 livestock_total_url = livestock_maps(animals, 'total_rf_m', y1, y2)
 livestock_densi_url = livestock_maps(animals, 'density_rf_m', y1, y2) + \
@@ -92,10 +94,12 @@ for index in range(start_i, end_i):
     polygon_samp = faostat_db[faostat_db.index == index]
     country = polygon_samp['gazName'].iloc[0]
     
-    if processed_countries is not None:
+    if False: #processed_countries is not None:
       if country in processed_countries:
         ttprint(f"Country {country} already processed.")
         continue
+    else:
+        ttprint(f"Country {country} Start.")
 
     raster_bounds = rasterio.open(livestock_total_url[0]).bounds
     polygon_samp = polygon_samp.to_crs(crs_igg).clip(raster_bounds)
@@ -176,10 +180,6 @@ for index in range(start_i, end_i):
     faostat_factor_df['year'] = faostat_factor_df.col.str.split('_', expand=True)[1].astype('int')
     faostat_factor_df = faostat_factor_df.drop(columns=['col'])
 
-    print(
-      faostat_factor_df[faostat_factor_df['year'] == 2020]
-    )
-    
     pq.write_to_dataset(
       Table.from_pandas(faostat_factor_df),
       out_pq_file,

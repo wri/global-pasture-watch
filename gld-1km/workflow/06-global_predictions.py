@@ -202,13 +202,13 @@ def _geom_temperature(df_features, array, x_size, y_size, x_off_s, y_off_s, base
 def in_mem_calc(array, df_features, x_size, y_size, x_off_s, y_off_s, base_landsat):
   _geom_temperature(df_features, array, x_size, y_size, x_off_s, y_off_s, base_landsat)
 
-def _raster_template(base_raster, tmp_raster, x_off_s, y_off_s, x_size, y_size, dtype):
+def _raster_template(base_raster, tmp_raster, min_x, max_y, x_size, y_size, dtype):
     
     ds = rasterio.open(base_raster)
 
     transform = np.array(ds.transform)
-    transform[2] = x_off_s
-    transform[5] = y_off_s
+    transform[2] = min_x
+    transform[5] = max_y
     transform = Affine(*transform)
 
     new_dataset = rasterio.open(tmp_raster, 'w', driver='GTiff',
